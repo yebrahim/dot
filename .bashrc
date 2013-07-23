@@ -51,3 +51,4 @@ shopt -s histappend
 export CLICOLOR=1
 export LSCOLORS=Exfxcxdxbxegedabagacad
 
+alias open='gnome.open'
