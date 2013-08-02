@@ -43,8 +43,6 @@ function! AutoHighlightToggle()
     endif
     endfunction
 set gfn=Monospace\ 9
-au FileType c set makeprg=gcc\ %
-au FileType cpp set makeprg=g++\ %
 
 " requires SIMBL and MouseTerm
 " enables mouse reporting in vim, so you can scroll and select using mouse
