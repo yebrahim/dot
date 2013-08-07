@@ -38,11 +38,17 @@ alias md='mkdir'
 alias du='du -h -d=1'
 alias tree='tree -A -C -L 2'
 
-# 2.3) grep options
+# 2.3) Git
+alias gclone='git clone'
+alias gpush='git push'
+alias gpull='git pull'
+alias gcom='git commit'
+
+# grep options
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;31' # green for matches
 
-# 2.4) sort options
+# sort options
 # Ensures cross-platform sorting behavior of GNU sort.
 # http://www.gnu.org/software/coreutils/faq/coreutils-faq.html#Sort-does-not-sort-in-normal-order_0021
 unset LANG
@@ -57,3 +63,6 @@ export CLICOLOR=1
 export LSCOLORS=Exfxcxdxbxegedabagacad
 
 alias open='gnome.open'
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
