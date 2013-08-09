@@ -31,6 +31,7 @@ if [ "$(uname)" == "Darwin" ]; then
 elif [ "$(uname)" == "Linux" ]; then
     alias ll="ls -AlrtF --color"
     alias ls="ls -AC --color"
+    alias grep='grep --color=always'
 fi
 alias ..='cd ..'
 alias ...='cd ..;cd ..'
