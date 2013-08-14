@@ -2,7 +2,8 @@ set hlsearch
 set incsearch
 syntax on
 set cindent
-set number
+set number                                  " line numbers
+set cursorline                              " highlight cursor line
 " using alt/meta to jump words 
 set linebreak
 " facilitate ctag viewing
@@ -43,6 +44,8 @@ function! AutoHighlightToggle()
     endif
     endfunction
 set gfn=Monospace\ 9
+au FileType c set makeprg=gcc\ %
+au FileType cpp set makeprg=g++\ %
 
 " requires SIMBL and MouseTerm
 " enables mouse reporting in vim, so you can scroll and select using mouse
@@ -61,3 +64,31 @@ highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Re
 " Use system clipboard for copy/pasting
 vmap <C-x> :!pbcopy<CR>  
 vmap <C-c> :w !pbcopy<CR><CR> 
+
+
+" If vundle is not installed, do it first
+if (!isdirectory(expand("$HOME/.vim/bundle/vundle")))
+    call system(expand("mkdir -p $HOME/.vim/bundle"))
+    call system(expand("git clone git@github.com:gmarik/vundle $HOME/.vim/bundle/vundle"))
+    echoerr 'Vundle was freshly installed. You should run :BundleInstall'
+endif
+
+set nocompatible               " be iMproved
+" filetype off                   " required!
+
+set rtp+=~/.vim/bundle/vundle 
+call vundle#rc()
+
+" let Vundle manage Vundle
+Bundle 'gmarik/vundle'
+
+" My Bundles here:
+"
+" original repos on github
+Bundle 'file:///Users/Y/.vim/downloaded_bundles/MatchTagAlways'
+" ...
+
+filetype plugin indent on     " required!
+" or 
+" filetype plugin on          " to not use the indentation settings set by plugins
+

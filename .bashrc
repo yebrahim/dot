@@ -32,6 +32,7 @@ elif [ "$(uname)" == "Linux" ]; then
     alias ll="ls -AlrtF --color"
     alias ls="ls -AC --color"
     alias grep='grep --color=always'
+    alias open='gnome.open'
 fi
 alias ..='cd ..'
 alias ...='cd ..;cd ..'
@@ -62,8 +63,6 @@ shopt -s histappend
 
 export CLICOLOR=1
 export LSCOLORS=Exfxcxdxbxegedabagacad
-
-alias open='gnome.open'
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
