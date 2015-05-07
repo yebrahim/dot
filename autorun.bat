@@ -20,7 +20,7 @@ doskey rmdir=rd /s /q $*
 doskey search=dir /s /b $*
 doskey cp=xcopy /friek $*
 doskey findstring=findstr /pins /C:$*
-doskey findproc=tasklist /fo list /v /fi "imagename eq $*"
+doskey findproc=tasklist /v $B findstr /pins $*
 
 doskey st=git status $*
 doskey clean=git clean -xdf
