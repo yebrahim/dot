@@ -21,6 +21,7 @@ doskey search=dir /s /b $*
 doskey cp=xcopy /friek $*
 doskey findstring=findstr /pins /C:$*
 doskey findproc=tasklist /v $B findstr /pins $*
+doskey kill=taskkill /f /pid $*
 
 doskey st=git status $*
 doskey clean=git clean -xdf
@@ -33,7 +34,7 @@ doskey unstage=git reset HEAD $*
 doskey syncto=git merge -m "Syncing to $1." $1 $*
 doskey commit=git commit -m $*
 doskey diff=git diff $*
-doskey log=git log --pretty=format:"%%h - %%an (%%ae): %%s" -10 $*
+doskey log=git log --all --pretty=format:"%%Cred%%h%%Creset - %%s %%Cgreen(%%cr) %%C(bold blue)<%%an>%%Creset" --date=relative -10 $*
 doskey stash=git stash save $*
 doskey unstash=git stash pop $*
 doskey stashes=git stash list $*
@@ -47,3 +48,4 @@ doskey cf="C:\Users\yaelsa\AppData\Roaming\Microsoft\Windows\Start Menu\Programs
 doskey bc2="%ProgramFiles(x86)%\Beyond Compare 2\BC2.exe"
 doskey sublime="%ProgramFiles%\Sublime Text 3\sublime_text.exe"
 doskey odd="%ProgramFiles(x86)%\Odd\Odd.exe" -git
+doskey gvim="%ProgramFiles(x86)%\Vim\vim74\gvim.exe"
