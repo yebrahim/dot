@@ -1,0 +1,20 @@
+{
+    "color_scheme": "Packages/Color Scheme - Default/Mac Classic.tmTheme",
+    "ignored_packages":
+    [
+        "Vintage"
+    ],
+    "caret_style": "phase",
+    "highlight_line": true,
+    "line_padding_bottom": 1,
+    "line_padding_top": 1,
+    "fade_fold_buttons": false,
+    "bold_folder_labels": true,
+    "auto_indent": true,
+    "detect_indentation": true,
+        "find_selected_text": true,
+        "fold_buttons": true,
+        "translate_tabs_to_spaces": true,
+        "trim_automatic_white_space": true,
+        "fade_fold_buttons": false,
+}
