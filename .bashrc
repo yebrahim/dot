@@ -12,7 +12,7 @@
 #           
 
 # Make prompt informative
-PS1='\e[0;31m\u \w| \e[m'
+#PS1='\e[0;31m\u \w| \e[m'
 
 ## -----------------------
 ## Set up aliases --
@@ -24,15 +24,6 @@ alias mv="mv -i"
 alias cp="cp -i"
 set -o noclobber
 
-# 2.2) Listing, directories, and motion
-if [ "$(uname)" == "Darwin" ]; then
-    alias ll="ls -AlrtF -color"
-    alias ls="ls -AC -color"
-elif [ "$(uname)" == "Linux" ]; then
-    alias ll="ls -AlrtF --color"
-    alias ls="ls -AC --color"
-    alias grep='grep --color=always'
-    alias open='gnome.open'
 fi
 alias ..='cd ..'
 alias ...='cd ..;cd ..'
@@ -57,12 +48,9 @@ unset LANG
 export LC_ALL=POSIX
 
 # history:
-export HISTCONTROL=erasedups
-export HISTSIZE=10000
-shopt -s histappend
+#export HISTCONTROL=erasedups
+#export HISTSIZE=10000
+#shopt -s histappend
 
 export CLICOLOR=1
 export LSCOLORS=Exfxcxdxbxegedabagacad
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
