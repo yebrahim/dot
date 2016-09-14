@@ -18,39 +18,40 @@
 ## Set up aliases --
 ## -----------------------
 
-# 2.1) Safety
+export PS1="\[\033[38;5;2m\]\u@\h\[$(tput sgr0)\]\[\033[38;5;15m\]:\[$(tput sgr0)\]\[\033[38;5;7m\]\w\[$(tput sgr0)\]\[\033[38;5;15m\]\\$ \[$(tput sgr0)\]"
+
+# Safety
 alias rm="rm -i"
 alias mv="mv -i"
 alias cp="cp -i"
 set -o noclobber
 
-fi
+# Nav
 alias ..='cd ..'
 alias ...='cd ..;cd ..'
 alias md='mkdir'
 alias du='du -h -d=1'
 alias tree='tree -A -C -L 2'
+findfile () {
+  find . -iname "*$1*" -print
+}
 
-# 2.3) Git
-alias gclone='git clone'
-alias gpush='git push'
-alias gpull='git pull'
-alias gcom='git commit'
+# Git
+alias clone='git clone'
+alias push='git push'
+alias pull='git pull'
+alias commit='git commit -m'
+alias st='git status'
+alias addall='git add -A'
+alias br='git branch'
+alias go='git checkout'
+alias unstage='git reset HEAD'
+alias log='git log --pretty=format:"%h - <%an> %s (%cr)" --date=relative -10'
+alias stash='git stash save'
+alias unstash='git stash pop'
+alias stashes='git stash list'
+alias pick='git cherry-pick'
 
 # grep options
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;31' # green for matches
-
-# sort options
-# Ensures cross-platform sorting behavior of GNU sort.
-# http://www.gnu.org/software/coreutils/faq/coreutils-faq.html#Sort-does-not-sort-in-normal-order_0021
-unset LANG
-export LC_ALL=POSIX
-
-# history:
-#export HISTCONTROL=erasedups
-#export HISTSIZE=10000
-#shopt -s histappend
-
-export CLICOLOR=1
-export LSCOLORS=Exfxcxdxbxegedabagacad
