@@ -53,6 +53,9 @@ alias unstash='git stash pop'
 alias stashes='git stash list'
 alias pick='git cherry-pick'
 alias trackedbranch='git rev-parse --abbrev-ref --symbolic-full-name @{u}'
+odd () {
+  git difftool -d $1..$2
+}
 
 # grep options
 export GREP_OPTIONS='--color=auto'
