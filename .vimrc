@@ -47,7 +47,6 @@ function! AutoHighlightToggle()
     return 1
     endif
     endfunction
-set gfn=Monospace\ 9
 au FileType c set makeprg=gcc\ %
 au FileType cpp set makeprg=g++\ %
 
@@ -82,12 +81,12 @@ autocmd vimenter * NERDTree
 autocmd vimenter * wincmd p
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 map tre :NERDTreeToggle<CR>
-
 " turn off smart indentation for pasting
 map! jj <ESC>
-
 " save shortcut
 nnoremap ss :w<CR>
+"nerdcommenter
+nmap cc <leader>c<Space>
 
 " persistent undo
 set undofile
