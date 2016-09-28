@@ -1,9 +1,12 @@
 set hlsearch
 set incsearch
+set ignorecase
 syntax on
+let python_highlight_all=1
 set cindent
 set number                                  " line numbers
 set cursorline                              " highlight cursor line
+set pastetoggle=<F2>
 " using alt/meta to jump words 
 set linebreak
 " facilitate ctag viewing
@@ -18,8 +21,9 @@ set shiftwidth=4
 set softtabstop=4
 filetype plugin on
 filetype indent on
-set undofile
-set undodir=~/.vim/undodir
+
+" yank to clipboard
+set clipboard=unnamedplus
 
 " Highlight all instances of word under cursor, when idle.
 " Useful when studying strange source code.
@@ -79,4 +83,15 @@ autocmd vimenter * wincmd p
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 map tre :NERDTreeToggle<CR>
 
+" turn off smart indentation for pasting
+map! jj <ESC>
 
+" save shortcut
+nnoremap ss :w<CR>
+
+" persistent undo
+set undofile
+set undodir=~/.backup/vim/undo,~/tmp,/tmp
+
+set autoindent
+set smartindent

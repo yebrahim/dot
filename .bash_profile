@@ -37,9 +37,9 @@ export PATH=/usr/bin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
+if [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+elif [ -f $(brew --prefix)/etc/bash_completion ]; then
     . $(brew --prefix)/etc/bash_completion
-else
-    . /etc/bash-completion
 fi
 
