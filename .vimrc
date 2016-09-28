@@ -74,4 +74,5 @@ filetype plugin indent on     " required!
 " filetype plugin on          " to not use the indentation settings set by plugins
 
 execute pathogen#infect()
+autocmd vimenter * NERDTree
 
