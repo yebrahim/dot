@@ -73,3 +73,5 @@ filetype plugin indent on     " required!
 " or 
 " filetype plugin on          " to not use the indentation settings set by plugins
 
+execute pathogen#infect()
+
