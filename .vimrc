@@ -75,4 +75,8 @@ filetype plugin indent on     " required!
 
 execute pathogen#infect()
 autocmd vimenter * NERDTree
+autocmd vimenter * wincmd p
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+map tre :NERDTreeToggle<CR>
+
 
