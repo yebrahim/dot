@@ -68,6 +68,11 @@ highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Re
 vmap <C-x> :!pbcopy<CR>  
 vmap <C-c> :w !pbcopy<CR><CR> 
 
+" resize buffers
+nnoremap > :vertical resize -1<cr>
+nnoremap < :vertical resize +1<cr>
+nnoremap - :resize -1<cr>
+nnoremap + :resize +1<cr>
 
 set nocompatible               " be iMproved
 " filetype off                   " required!
@@ -97,7 +102,9 @@ set smartindent
 
 " theme
 color codeschool
-set guifont=Monaco:h12
+if has('macunix')
+    set guifont=Monaco:h12
+endif
 set guioptions-=T " Removes top toolbar
 set guioptions-=r " Removes right hand scroll bar
 set go-=L " Removes left hand scroll bar
