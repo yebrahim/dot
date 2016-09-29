@@ -77,7 +77,11 @@ set splitbelow
 set splitright
 
 " list open files
-nnoremap ls :ls<cr>
+nnoremap ff :ls<cr>:b<Space>
+
+" open grep prompt
+nnoremap Grep :Grep
+nnoremap grep :Grep <c-r>=expand("<cword>")<cr><CR>
 
 set nocompatible               " be iMproved
 " filetype off                   " required!
