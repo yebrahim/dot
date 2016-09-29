@@ -73,6 +73,11 @@ nnoremap > :vertical resize -1<cr>
 nnoremap < :vertical resize +1<cr>
 nnoremap - :resize -1<cr>
 nnoremap + :resize +1<cr>
+set splitbelow
+set splitright
+
+" list open files
+nnoremap ls :ls<cr>
 
 set nocompatible               " be iMproved
 " filetype off                   " required!
