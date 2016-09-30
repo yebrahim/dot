@@ -119,3 +119,9 @@ set guioptions-=r " Removes right hand scroll bar
 set go-=L " Removes left hand scroll bar
 autocmd User Rails let b:surround_{char2nr('-')} = "<% \r %>" " displays <% %> correctly
 :set cpoptions+=$ " puts a $ marker for the end of words/lines in cw/c$ commands
+
+" ctrlp ignore options
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|build'
+
+" fold
+set foldmethod=syntax
