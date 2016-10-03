@@ -19,6 +19,7 @@ inoremap <nul> <c-n>
 set expandtab
 set shiftwidth=4
 set softtabstop=4
+set autoread
 filetype plugin on
 filetype indent on
 
@@ -69,10 +70,10 @@ vmap <C-x> :!pbcopy<CR>
 vmap <C-c> :w !pbcopy<CR><CR> 
 
 " resize buffers
-nnoremap > :vertical resize -1<cr>
-nnoremap < :vertical resize +1<cr>
-nnoremap - :resize -1<cr>
-nnoremap + :resize +1<cr>
+nnoremap s. :vertical resize -1<cr>
+nnoremap s, :vertical resize +1<cr>
+nnoremap s- :resize -1<cr>
+nnoremap s= :resize +1<cr>
 set splitbelow
 set splitright
 
@@ -125,23 +126,12 @@ let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|build'
 
 " fold
 set foldmethod=syntax
+set foldnestmax=1
 
-" bind K to grep word under cursor
-nnoremap grep :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+" git gutter signs
+let g:gitgutter_sign_added = '▓▓'
+let g:gitgutter_sign_modified = '▓▓'
+let g:gitgutter_sign_removed = '▓▓'
 
-" set working directory to git project root
-" or directory of current file if not git project
-function! SetProjectRoot()
-  " default to the current file's directory
-  lcd %:p:h
-  let git_dir = system("git rev-parse --show-toplevel")
-  " See if the command output starts with 'fatal' (if it does, not in a git repo)
-  let is_not_git_dir = matchstr(git_dir, '^fatal:.*')
-  " if git project, change local directory to git project root
-  if empty(is_not_git_dir)
-    lcd `=git_dir`
-  endif
-endfunction
-
-autocmd BufRead * call SetProjectRoot()
-
+" conque term
+nnoremap sh :sp<CR>:ConqueTerm bash<CR>
