@@ -24,7 +24,11 @@ filetype plugin on
 filetype indent on
 
 " yank to clipboard
-set clipboard=unnamedplus
+if has('macunix')
+    set clipboard=unnamed
+elseif has('unix')
+    set clipboard=unnamedplus
+endif
 
 " Highlight all instances of word under cursor, when idle.
 " Useful when studying strange source code.
@@ -76,6 +80,12 @@ nnoremap s- :resize -1<cr>
 nnoremap s= :resize +1<cr>
 set splitbelow
 set splitright
+
+" move between buffers
+nnoremap wj <C-w>j
+nnoremap wk <C-w>k
+nnoremap wh <C-w>h
+nnoremap wl <C-w>l
 
 " list open files
 nnoremap ff :ls<cr>:b<Space>
