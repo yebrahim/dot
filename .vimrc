@@ -144,3 +144,6 @@ let g:gitgutter_sign_removed = '▓▓'
 
 " conque term
 nnoremap shell :sp<CR>:ConqueTerm bash<CR>
+
+" disable cursor blink
+set guicursor+=n-v-c:blinkon0
