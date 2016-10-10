@@ -82,10 +82,10 @@ set splitbelow
 set splitright
 
 " move between buffers
-nnoremap wj <C-w>j
-nnoremap wk <C-w>k
-nnoremap wh <C-w>h
-nnoremap wl <C-w>l
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sh <C-w>h
+nnoremap sl <C-w>l
 
 " list open files
 nnoremap ff :ls<cr>:b<Space>
@@ -102,7 +102,6 @@ filetype plugin indent on     " required!
 " filetype plugin on          " to not use the indentation settings set by plugins
 
 execute pathogen#infect()
-autocmd vimenter * NERDTree
 autocmd vimenter * wincmd p
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 map tre :NERDTreeToggle<CR>
@@ -144,4 +143,4 @@ let g:gitgutter_sign_modified = '▓▓'
 let g:gitgutter_sign_removed = '▓▓'
 
 " conque term
-nnoremap sh :sp<CR>:ConqueTerm bash<CR>
+nnoremap shell :sp<CR>:ConqueTerm bash<CR>
