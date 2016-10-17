@@ -86,6 +86,9 @@ nnoremap sj <C-w>j
 nnoremap sk <C-w>k
 nnoremap sh <C-w>h
 nnoremap sl <C-w>l
+nnoremap sq :bd<CR>
+nnoremap <C-j> :bn<CR>
+nnoremap <C-k> :bp<CR>
 
 " list open files
 nnoremap ff :ls<cr>:b<Space>
