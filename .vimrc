@@ -14,11 +14,11 @@ map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 " read tags file from upper directories
 set tags=./tags;/
-set tabstop=4
-inoremap <nul> <c-n>
+set tabstop=2
+set softtabstop=2 expandtab
 set expandtab
-set shiftwidth=4
-set softtabstop=4
+set shiftwidth=2
+inoremap <nul> <c-n>
 set autoread
 filetype plugin on
 filetype indent on
@@ -87,8 +87,17 @@ nnoremap sk <C-w>k
 nnoremap sh <C-w>h
 nnoremap sl <C-w>l
 nnoremap sq :bd<CR>
+
 nnoremap <C-j> :bn<CR>
 nnoremap <C-k> :bp<CR>
+nnoremap <C-Tab> :bn<CR>
+nnoremap <C-S-Tab> :bp<CR>
+
+" treat wrapped lines as multi-lines
+noremap  <buffer> <silent> k gk
+noremap  <buffer> <silent> j gj
+noremap  <buffer> <silent> 0 g0
+noremap  <buffer> <silent> $ g$
 
 " list open files
 nnoremap ff :ls<cr>:b<Space>
@@ -114,6 +123,7 @@ map! jj <ESC>
 nnoremap ss :w<CR>
 "nerdcommenter
 nmap cc <leader>c<Space>
+vmap cc <leader>c<Space>
 
 " persistent undo
 set undofile
@@ -150,3 +160,15 @@ nnoremap shell :sp<CR>:ConqueTerm bash<CR>
 
 " disable cursor blink
 set guicursor+=n-v-c:blinkon0
+
+" new line above
+nmap <C-Enter> <ESC>ko
+imap <C-Enter> <ESC>ko
+
+" easygrep config
+let g:EasyGrepRecursive=1
+let g:EasyGrepCommand=1
+let g:EasyGrepFilesToExclude='*.swp,*~,*.swo,.git,.git/**.**,build/'
+let g:EasyGrepAllOptionsInExplorer=1
+let g:EasyGrepJumpToMatch=0
+
