@@ -119,6 +119,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 map tre :NERDTreeToggle<CR>
 " turn off smart indentation for pasting
 map! jj <ESC>
+map! kk <ESC>
 " save shortcut
 nnoremap ss :w<CR>
 "nerdcommenter
@@ -156,7 +157,7 @@ let g:gitgutter_sign_modified = '▓▓'
 let g:gitgutter_sign_removed = '▓▓'
 
 " conque term
-nnoremap shell :sp<CR>:ConqueTerm bash<CR>
+nnoremap terminal :sp<CR>:ConqueTerm bash<CR>
 
 " disable cursor blink
 set guicursor+=n-v-c:blinkon0
@@ -171,4 +172,7 @@ let g:EasyGrepCommand=1
 let g:EasyGrepFilesToExclude='*.swp,*~,*.swo,.git,.git/**.**,build/'
 let g:EasyGrepAllOptionsInExplorer=1
 let g:EasyGrepJumpToMatch=0
+
+" swap files
+set noswapfile
 
