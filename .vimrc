@@ -176,3 +176,5 @@ let g:EasyGrepJumpToMatch=0
 " swap files
 set noswapfile
 
+" jedi-vim, don't show the docstring pane
+autocmd FileType python setlocal completeopt-=preview
