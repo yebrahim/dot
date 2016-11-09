@@ -86,7 +86,7 @@ nnoremap sj <C-w>j
 nnoremap sk <C-w>k
 nnoremap sh <C-w>h
 nnoremap sl <C-w>l
-nnoremap sq :bd<CR>
+nnoremap sq :bd!<CR>
 
 nnoremap <C-j> :bn<CR>
 nnoremap <C-k> :bp<CR>
@@ -94,16 +94,15 @@ nnoremap <C-Tab> :bn<CR>
 nnoremap <C-S-Tab> :bp<CR>
 
 " treat wrapped lines as multi-lines
-noremap  <buffer> <silent> k gk
-noremap  <buffer> <silent> j gj
-noremap  <buffer> <silent> 0 g0
-noremap  <buffer> <silent> $ g$
+noremap k gk
+noremap j gj
+noremap 0 g0
+noremap $ g$
 
 " list open files
 nnoremap ff :ls<cr>:b<Space>
 
 " open grep prompt
-nnoremap Grep :Grep
 nnoremap grep :Grep <c-r>=expand("<cword>")<cr><CR>
 
 set nocompatible               " be iMproved
