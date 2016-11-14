@@ -144,7 +144,10 @@ autocmd User Rails let b:surround_{char2nr('-')} = "<% \r %>" " displays <% %> c
 :set cpoptions+=$ " puts a $ marker for the end of words/lines in cw/c$ commands
 
 " ctrlp ignore options
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git\|build'
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](\.git|\.hg|\.svn|_site|node_modules|DS_Store|build)$',
+  \ }
 
 " fold
 set foldmethod=syntax
@@ -168,7 +171,7 @@ imap <C-Enter> <ESC>ko
 " easygrep config
 let g:EasyGrepRecursive=1
 let g:EasyGrepCommand=1
-let g:EasyGrepFilesToExclude='*.swp,*~,*.swo,.git,.git/**.**,build/'
+let g:EasyGrepFilesToExclude="*.swp,*~,*.swo,.git,build,node_modules"
 let g:EasyGrepAllOptionsInExplorer=1
 let g:EasyGrepJumpToMatch=0
 

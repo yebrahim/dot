@@ -31,6 +31,7 @@ alias ..='cd ..'
 alias ...='cd ..;cd ..'
 alias md='mkdir'
 alias du='du -h -d=1'
+alias ll='ls -Ahl'
 alias tree='tree -A -C -L 2'
 findfile () {
   find . -iname "*$1*" -print
@@ -55,9 +56,14 @@ alias stashes='git stash list'
 alias pick='git cherry-pick'
 alias trackedbranch='git rev-parse --abbrev-ref --symbolic-full-name @{u}'
 odd () {
-  git difftool -d $1..$2
+  git difftool -y $1..$2
 }
 
 # grep options
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;31' # green for matches
+
+# ls colors
+export CLICOLOR=1
+export LSCOLORS=ExFxCxDxBxegedabagacad
+
