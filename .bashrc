@@ -38,6 +38,7 @@ findfile () {
 }
 
 # Git
+alias clean='git clean -xdf'
 alias clone='git clone'
 alias push='git push'
 alias pull='git pull'
