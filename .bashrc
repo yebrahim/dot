@@ -18,7 +18,7 @@
 ## Set up aliases --
 ## -----------------------
 
-export PS1="\[\033[38;5;2m\]\u@\h\[$(tput sgr0)\]\[\033[38;5;15m\]:\[$(tput sgr0)\]\[\033[38;5;7m\]\w\[$(tput sgr0)\]\[\033[38;5;15m\]\\$ \[$(tput sgr0)\]"
+export PS1="\[\033[38;5;2m\]\u@\h\[$(tput sgr0)\]\[\033[38;5;15m\]:\[$(tput sgr0)\]\[\033[38;5;7m\]\w\[$(tput sgr0)\]\[\033[38;5;15m\]\\$ \[$(tput sgr0)\]\n$ "
 
 # Safety
 alias rm="rm -i"
@@ -59,6 +59,9 @@ alias trackedbranch='git rev-parse --abbrev-ref --symbolic-full-name @{u}'
 odd () {
   git difftool -y $1..$2
 }
+
+# grep
+function mygrep { grep -rnIi "$1" . --color; }
 
 # grep options
 export GREP_OPTIONS='--color=auto'
