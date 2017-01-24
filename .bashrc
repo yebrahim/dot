@@ -57,15 +57,18 @@ alias stashes='git stash list'
 alias pick='git cherry-pick'
 alias trackedbranch='git rev-parse --abbrev-ref --symbolic-full-name @{u}'
 odd () {
-  git difftool -y $1..$2
+  git difftool -y -d $1..$2
 }
 
 # grep
-function mygrep { grep -rnIi "$1" . --color; }
+function mygrep { grep -rnIi -F "$1" . --color; }
 
 # grep options
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;31' # green for matches
+
+# tmux
+alias tmux='tmux -2'
 
 # ls colors
 export CLICOLOR=1
