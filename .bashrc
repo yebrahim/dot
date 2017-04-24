@@ -74,3 +74,4 @@ alias tmux='tmux -2'
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
+IGNOREEOF=10   # Shell only exists after the 10th consecutive Ctrl-d

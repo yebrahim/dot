@@ -21,11 +21,13 @@ set tags=./tags;/
 set tabstop=2
 set softtabstop=2 expandtab
 set expandtab
+set smarttab
 set shiftwidth=2
 inoremap <nul> <c-n>
 set autoread
 filetype plugin on
 filetype indent on
+set colorcolumn=100
 
 " yank to clipboard
 if has('macunix')
@@ -33,6 +35,9 @@ if has('macunix')
 elseif has('unix')
     set clipboard=unnamedplus
 endif
+
+" search visually selected block
+vnoremap / <Esc>/\%V
 
 " Highlight all instances of word under cursor, when idle.
 " Useful when studying strange source code.
@@ -58,6 +63,9 @@ function! AutoHighlightToggle()
     endfunction
 au FileType c set makeprg=gcc\ %
 au FileType cpp set makeprg=g++\ %
+
+" Remove current highlighting
+map zh :nohlsearch<CR>
 
 " requires SIMBL and MouseTerm
 " enables mouse reporting in vim, so you can scroll and select using mouse
@@ -90,7 +98,7 @@ nnoremap sj <C-w>j
 nnoremap sk <C-w>k
 nnoremap sh <C-w>h
 nnoremap sl <C-w>l
-nnoremap sq :bd!<CR>
+nnoremap sq :BW<CR>
 
 nnoremap <C-j> :bn<CR>
 nnoremap <C-k> :bp<CR>
@@ -158,9 +166,9 @@ set foldmethod=syntax
 set foldnestmax=1
 
 " git gutter signs
-let g:gitgutter_sign_added = '▓▓'
-let g:gitgutter_sign_modified = '▓▓'
-let g:gitgutter_sign_removed = '▓▓'
+let g:gitgutter_sign_added = '▓'
+let g:gitgutter_sign_modified = '▓'
+let g:gitgutter_sign_removed = '▓'
 
 " conque term
 nnoremap terminal :sp<CR>:ConqueTerm bash<CR>
