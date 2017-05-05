@@ -12,13 +12,7 @@
 #           
 
 # Make prompt informative
-#PS1='\e[0;31m\u \w| \e[m'
-
-## -----------------------
-## Set up aliases --
-## -----------------------
-
-export PS1="\[\033[38;5;2m\]\u@\h\[$(tput sgr0)\]\[\033[38;5;15m\]:\[$(tput sgr0)\]\[\033[38;5;7m\]\w\[$(tput sgr0)\]\[\033[38;5;15m\]\\$ \[$(tput sgr0)\]\n$ "
+export PS1="\[\033[38;5;2m\]\u@\h\[$(tput sgr0)\]\[\033[38;5;15m\]:\[\033[01;34m\]\w\[\033[00m\]\n$ "
 
 # Safety
 alias rm="rm -i"
@@ -45,7 +39,9 @@ alias pull='git pull'
 alias commit='git commit -m'
 alias amend='git commit --amend'
 alias fetch='git fetch'
-alias st='git status'
+function st {
+  git log --pretty=format:"%h - <%an> %s (%cr)" --date=relative -3 && echo && git status
+}
 alias addall='git add -A'
 alias br='git branch'
 alias co='git checkout'
@@ -61,10 +57,9 @@ odd () {
 }
 
 # grep
-function mygrep { grep -rnIi -F "$1" . --color; }
+function mygrep { grep -rnIi "$1" . --color; }
 
 # grep options
-export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;31' # green for matches
 
 # tmux

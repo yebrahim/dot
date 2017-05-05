@@ -98,7 +98,7 @@ nnoremap sj <C-w>j
 nnoremap sk <C-w>k
 nnoremap sh <C-w>h
 nnoremap sl <C-w>l
-nnoremap sq :BW<CR>
+nnoremap sq :BD<CR>
 
 nnoremap <C-j> :bn<CR>
 nnoremap <C-k> :bp<CR>
