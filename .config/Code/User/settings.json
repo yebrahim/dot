@@ -1,0 +1,72 @@
+// Place your settings in this file to overwrite the default settings
+{
+    "vim.disableAnnoyingNeovimMessage": true,
+    "editor.minimap.enabled": false,
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "components/**/*.js": true,
+        "**/build": true
+    },
+    "vim.startInInsertMode": false,
+    "vim.insertModeKeyBindings": [
+      {
+        "before": ["j", "j"],
+        "after": ["<esc>"]
+      },
+      {
+          "before": ["s", "s"],
+          "after": ["<esc>"],
+          "commands": [
+              {
+                  "command": "workbench.action.files.save"
+              }
+          ]
+      },
+      {
+          "before": ["s", "h"],
+          "after": ["<esc>"],
+          "commands": [
+              {
+                  "command": "workbench.action.focusFirstEditorGroup"
+              }
+          ]
+      },
+      {
+          "before": ["s", "l"],
+          "after": ["<esc>"],
+          "commands": [
+              {
+                  "command": "workbench.action.focusSecondEditorGroup"
+              }
+          ]
+      },
+      {
+          "before": ["s", "q"],
+          "after": [],
+          "commands": [
+              {
+                  "command": "workbench.action.closeActiveEditor"
+              }
+          ]
+      }
+    ],
+    "vim.otherModesKeyBindingsNonRecursive": [
+        {
+            "before": ["<leader>","d"],
+            "after": ["d", "d"]
+        },
+        {
+            "before":["<C-n>"],
+            "after":[],
+            "commands": [
+                {
+                    "command": ":nohl"
+                }
+            ]
+        }
+    ]
+}
