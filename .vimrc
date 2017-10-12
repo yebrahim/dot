@@ -39,13 +39,16 @@ endif
 " search visually selected block
 vnoremap / <Esc>/\%V
 
+" select entire line without leading or trailing spaces
+nnoremap vil ^vg_
+
 " Highlight all instances of word under cursor, when idle.
 " Useful when studying strange source code.
 " Type z/ to toggle highlighting on/off.
 nnoremap z/ :if AutoHighlightToggle()<Bar>set hls<Bar>endif<CR>
 function! AutoHighlightToggle()
     let @/ = ''
-    if exists('#auto_highlight')
+   if exists('#auto_highlight')
     au! auto_highlight
     augroup! auto_highlight
     setl updatetime=4000
@@ -126,7 +129,6 @@ filetype plugin indent on     " required!
 
 execute pathogen#infect()
 autocmd vimenter * wincmd p
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 map tre :NERDTreeToggle<CR>
 " turn off smart indentation for pasting
 map! jj <ESC>
@@ -192,3 +194,4 @@ set noswapfile
 
 " jedi-vim, don't show the docstring pane
 autocmd FileType python setlocal completeopt-=preview
+
