@@ -12,7 +12,36 @@
 #           
 
 # Make prompt informative
-export PS1="\[\033[38;5;2m\]\u@\h\[$(tput sgr0)\]\[\033[38;5;15m\]:\[\033[01;34m\]\w\[\033[00m\]\n$ "
+
+# Reset
+Color_Off="\[\033[0m\]"       # Text Reset
+PathShort="\w"
+NewLine="\n"
+# Regular Colors
+Black="\[\033[0;30m\]"        # Black
+Red="\[\033[0;31m\]"          # Red
+Green="\[\033[0;32m\]"        # Green
+Yellow="\[\033[0;33m\]"       # Yellow
+Blue="\[\033[0;34m\]"         # Blue
+Purple="\[\033[0;35m\]"       # Purple
+Cyan="\[\033[0;36m\]"         # Cyan
+White="\[\033[0;37m\]"        # White
+
+git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
+export PS1=$Green"[\h]":$Color_Off'$(git branch &>/dev/null;\
+if [ $? -eq 0 ]; then \
+  echo "$(echo `git status` | grep "nothing to commit" > /dev/null 2>&1; \
+  if [ "$?" -eq "0" ]; then \
+    echo "'$Green'"$(git_branch "(%s)");\
+  else \
+    echo "'$Red'"$(git_branch "{%s}");\
+  fi) '$Blue'\w'$Color_Off''$NewLine'$ "; \
+else \
+  echo "$(git_branch)\[\033[01;34m\]\w\[\033[00m\]\n$ "
+fi)'
 
 # Safety
 alias rm="rm -i"
@@ -35,6 +64,7 @@ findfile () {
 alias clean='git clean -xdf'
 alias clone='git clone'
 alias push='git push'
+alias pushupstream='git push --set-upstream origin $(git_current_branch)'
 alias pull='git pull'
 alias commit='git commit -m'
 alias amend='git commit --amend'
@@ -69,4 +99,5 @@ alias tmux='tmux -2'
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
-IGNOREEOF=10   # Shell only exists after the 10th consecutive Ctrl-d
+# prevent accidental session exit when ctrl+d pressed
+set -o ignoreeof
