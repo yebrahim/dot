@@ -38,9 +38,14 @@ if [ $? -eq 0 ]; then \
     echo "'$Green'"$(git_branch "(%s)");\
   else \
     echo "'$Red'"$(git_branch "{%s}");\
-  fi) '$Blue'\w'$Color_Off''$NewLine'$ "; \
+  fi) '$Cyan'\w'$Color_Off''$NewLine'$ "; \
 else \
-  echo "$(git_branch)\[\033[01;34m\]\w\[\033[00m\]\n$ "
+  echo "$(echo `pwd` | grep "/google/src/cloud/$USER/" > /dev/null 2>&1; \
+  if [ "$?" -eq "0" ]; then \
+    echo "'$Green'Citc '$Cyan\${PWD#/google/src/cloud/$USER/}$Color_Off'\$ "; \
+  else \
+    echo "'$Cyan'\w'$Color_Off'\n$ "
+  fi)"; \
 fi)'
 
 # Safety

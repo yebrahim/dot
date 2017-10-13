@@ -2,15 +2,22 @@
 {
     "vim.disableAnnoyingNeovimMessage": true,
     "editor.minimap.enabled": false,
+    "git.autofetch": false,
     "files.exclude": {
         "**/.git": true,
         "**/.svn": true,
         "**/.hg": true,
         "**/CVS": true,
         "**/.DS_Store": true,
-        "components/**/*.js": true,
-        "**/build": true
+        "sources/web/datalab/polymer/components/**/*.js": true,
+        "sources/web/datalab/polymer/modules/**/*.js": true,
+        "sources/web/datalab/static/experimental": true,
+        "**/build": true,
+        ".tox": true,
+        "*.pyc": true,
+        "htmlcov": true
     },
+    "vim.useSystemClipboard": true,
     "vim.startInInsertMode": false,
     "vim.insertModeKeyBindings": [
       {
@@ -68,5 +75,12 @@
                 }
             ]
         }
-    ]
+    ],
+    "editor.rulers": [
+        100
+    ],
+    "vim.disableAnnoyingGcMessage": true,
+    "editor.tabSize": 2,
+    "window.zoomLevel": 1,
+    "typescript.tsdk": "/usr/local/lib/node_modules/typescript/lib"
 }
