@@ -28,7 +28,7 @@ Cyan="\[\033[0;36m\]"         # Cyan
 White="\[\033[0;37m\]"        # White
 
 git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
 
 export PS1=$Green"[\h]":$Color_Off'$(git branch &>/dev/null;\
@@ -69,7 +69,7 @@ findfile () {
 alias clean='git clean -xdf'
 alias clone='git clone'
 alias push='git push'
-alias pushupstream='git push --set-upstream origin $(git_current_branch)'
+alias pushupstream='git push --set-upstream origin $(git_branch)'
 alias pull='git pull'
 alias commit='git commit -m'
 alias amend='git commit --amend'
