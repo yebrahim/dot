@@ -14,18 +14,18 @@
 # Make prompt informative
 
 # Reset
-Color_Off="\[\033[0m\]"       # Text Reset
+Color_Off="\033[0m"       # Text Reset
 PathShort="\w"
 NewLine="\n"
 # Regular Colors
-Black="\[\033[0;30m\]"        # Black
-Red="\[\033[0;31m\]"          # Red
-Green="\[\033[0;32m\]"        # Green
-Yellow="\[\033[0;33m\]"       # Yellow
-Blue="\[\033[0;34m\]"         # Blue
-Purple="\[\033[0;35m\]"       # Purple
-Cyan="\[\033[0;36m\]"         # Cyan
-White="\[\033[0;37m\]"        # White
+Black="\033[0;30m"        # Black
+Red="\033[0;31m"          # Red
+Green="\033[0;32m"        # Green
+Yellow="\033[0;33m"       # Yellow
+Blue="\033[0;34m"         # Blue
+Purple="\033[0;35m"       # Purple
+Cyan="\033[0;36m"         # Cyan
+White="\033[0;37m"        # White
 
 git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
@@ -35,7 +35,7 @@ export PS1=$Green"[\h]":$Color_Off'$(git branch &>/dev/null;\
 if [ $? -eq 0 ]; then \
   echo "$(echo `git status` | grep "nothing to commit" > /dev/null 2>&1; \
   if [ "$?" -eq "0" ]; then \
-    echo "'$Green'"$(git_branch "(%s)");\
+    echo "'$Green'"\($(git_branch "(%s)")\);\
   else \
     echo "'$Red'"$(git_branch "{%s}");\
   fi) '$Cyan'\w'$Color_Off''$NewLine'$ "; \
@@ -47,6 +47,14 @@ else \
     echo "'$Cyan'\w'$Color_Off'\n$ "
   fi)"; \
 fi)'
+
+# Git bash completion
+if [ ! -f ~/bin/git-completion.bash ]; then
+  wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash ~/bin/
+  wget https://raw.githubusercontent.com/bobthecow/git-flow-completion/master/git-flow-completion.bash ~/bin/
+fi
+source ~/bin/git-completion.bash
+source ~/bin/git-flow-completion.bash
 
 # Safety
 alias rm="rm -i"
@@ -74,8 +82,24 @@ alias pull='git pull'
 alias commit='git commit -m'
 alias amend='git commit --amend'
 alias fetch='git fetch'
+function colored-git-status {
+  for i in `git diff --name-status`
+  do
+    if  grep -q "^M" <<< "$i"
+    then
+      echo -e -n "$i$Yellow  "
+    elif  grep -q "^D" <<< "$i"
+    then
+      echo -e -n "$i$Red  "
+    else
+      echo -e "$i$Color_Off"
+    fi
+  done
+}
 function st {
-  git log --pretty=format:"%h - <%an> %s (%cr)" --date=relative -3 && echo && git status
+  git log --pretty=format:"%h - <%an> %s (%cr)" --date=relative -3 && echo &&\
+    git status -s
+    #colored-git-status
 }
 alias addall='git add -A'
 alias br='git branch'
