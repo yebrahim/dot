@@ -38,10 +38,6 @@ export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=~/.npm-global/bin:$PATH
 
-if [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-elif [ -f $(brew --prefix)/etc/bash_completion ]; then
-    . $(brew --prefix)/etc/bash_completion
+if [ -f ~/bash_profile.local ]; then
+  source ~/.bash_profile.local
 fi
-
-source ~/.bash_profile.local

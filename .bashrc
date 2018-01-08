@@ -50,8 +50,8 @@ fi)'
 
 # Git bash completion
 if [ ! -f ~/bin/git-completion.bash ]; then
-  wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash ~/bin/
-  wget https://raw.githubusercontent.com/bobthecow/git-flow-completion/master/git-flow-completion.bash ~/bin/
+  curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/bin/git-completion.bash
+  curl https://raw.githubusercontent.com/bobthecow/git-flow-completion/master/git-flow-completion.bash -o ~/bin/git-flow-completion.bash
 fi
 source ~/bin/git-completion.bash
 source ~/bin/git-flow-completion.bash

@@ -76,12 +76,13 @@
             ]
         }
     ],
-    "editor.tabSize": 2,
     "editor.rulers": [
         100
     ],
     "vim.disableAnnoyingGcMessage": true,
     "editor.tabSize": 2,
     "window.zoomLevel": 1,
-    "typescript.tsdk": "/usr/local/lib/node_modules/typescript/lib"
+    "typescript.tsdk": "/usr/local/lib/node_modules/typescript/lib",
+    "workbench.statusBar.visible": true,
+    "workbench.startupEditor": "newUntitledFile"
 }
