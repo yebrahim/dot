@@ -97,9 +97,9 @@ function colored-git-status {
   done
 }
 function st {
-  git log --pretty=format:"%h - <%an> %s (%cr)" --date=relative -3 && echo &&\
-    git status -s
-    #colored-git-status
+  git status | sed -n '/Your/,/^$/p'
+  git status -s && echo
+  git log --pretty=format:"%h - <%an> %s (%cr)" --date=relative -3 && echo
 }
 alias addall='git add -A'
 alias br='git branch'
