@@ -66,7 +66,7 @@ set -o noclobber
 alias ..='cd ..'
 alias ...='cd ..;cd ..'
 alias md='mkdir'
-alias du='du -h -d=1'
+alias du='du -h --summarize'
 alias ll='ls -Ahl'
 alias tree='tree -A -C -L 2'
 findfile () {

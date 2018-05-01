@@ -2,7 +2,6 @@
 {
     "vim.disableAnnoyingNeovimMessage": true,
     "editor.minimap.enabled": false,
-    "git.autofetch": false,
     "files.exclude": {
         "**/.git": true,
         "**/.svn": true,
@@ -20,15 +19,25 @@
     "vim.useSystemClipboard": true,
     "vim.startInInsertMode": false,
     "vim.insertModeKeyBindings": [
-      {
-        "before": ["j", "j"],
-        "after": ["<esc>"]
-      }
+        {
+            "before": [
+                "j",
+                "j"
+            ],
+            "after": [
+                "<esc>"
+            ]
+        }
     ],
     "vim.otherModesKeyBindingsNonRecursive": [
         {
-            "before": ["s", "s"],
-            "after": ["<esc>"],
+            "before": [
+                "s",
+                "s"
+            ],
+            "after": [
+                "<esc>"
+            ],
             "commands": [
                 {
                     "command": "workbench.action.files.save"
@@ -36,8 +45,13 @@
             ]
         },
         {
-            "before": ["s", "h"],
-            "after": ["<esc>"],
+            "before": [
+                "s",
+                "h"
+            ],
+            "after": [
+                "<esc>"
+            ],
             "commands": [
                 {
                     "command": "workbench.action.focusFirstEditorGroup"
@@ -45,8 +59,13 @@
             ]
         },
         {
-            "before": ["s", "l"],
-            "after": ["<esc>"],
+            "before": [
+                "s",
+                "l"
+            ],
+            "after": [
+                "<esc>"
+            ],
             "commands": [
                 {
                     "command": "workbench.action.focusSecondEditorGroup"
@@ -54,7 +73,10 @@
             ]
         },
         {
-            "before": ["s", "q"],
+            "before": [
+                "s",
+                "q"
+            ],
             "after": [],
             "commands": [
                 {
@@ -63,15 +85,41 @@
             ]
         },
         {
-            "before": ["<leader>","d"],
-            "after": ["d", "d"]
+            "before": [
+                "<leader>",
+                "d"
+            ],
+            "after": [
+                "d",
+                "d"
+            ]
         },
         {
-            "before":["<C-n>"],
-            "after":[],
+            "before": [
+                "<C-n>"
+            ],
+            "after": [],
             "commands": [
                 {
                     "command": ":nohl"
+                }
+            ]
+        },
+        {
+            "before": ["u"],
+            "commands": [
+                {
+                    "command": "undo"
+                }
+            ]
+        },
+        {
+            "before": [
+                "C-r"
+            ],
+            "commands": [
+                {
+                    "command": "redo"
                 }
             ]
         }
@@ -84,5 +132,7 @@
     "window.zoomLevel": 1,
     "typescript.tsdk": "/usr/local/lib/node_modules/typescript/lib",
     "workbench.statusBar.visible": true,
-    "workbench.startupEditor": "newUntitledFile"
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.statusBar.feedback.visible": false,
+    "files.insertFinalNewline": true
 }
