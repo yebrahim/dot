@@ -1,20 +1,14 @@
 // Place your settings in this file to overwrite the default settings
 {
-    "vim.disableAnnoyingNeovimMessage": true,
     "editor.minimap.enabled": false,
+    "git.autofetch": true,
     "files.exclude": {
         "**/.git": true,
         "**/.svn": true,
         "**/.hg": true,
         "**/CVS": true,
         "**/.DS_Store": true,
-        "sources/web/datalab/polymer/components/**/*.js": true,
-        "sources/web/datalab/polymer/modules/**/*.js": true,
-        "sources/web/datalab/static/experimental": true,
-        "**/build": true,
-        ".tox": true,
-        "*.pyc": true,
-        "htmlcov": true
+        "**/.js.map": true,
     },
     "vim.useSystemClipboard": true,
     "vim.startInInsertMode": false,
@@ -127,12 +121,12 @@
     "editor.rulers": [
         100
     ],
-    "vim.disableAnnoyingGcMessage": true,
     "editor.tabSize": 2,
-    "window.zoomLevel": 1,
-    "typescript.tsdk": "/usr/local/lib/node_modules/typescript/lib",
+    "window.zoomLevel": 0,
     "workbench.statusBar.visible": true,
     "workbench.startupEditor": "newUntitledFile",
     "workbench.statusBar.feedback.visible": false,
-    "files.insertFinalNewline": true
+    "extensions.ignoreRecommendations": true,
+    "files.insertFinalNewline": true,
+    "files.useExperimentalFileWatcher": true
 }
