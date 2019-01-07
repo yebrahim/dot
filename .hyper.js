@@ -149,8 +149,12 @@ module.exports = {
   localPlugins: [],
 
   keymaps: {
-    'pane:splitVertical': 'cmd+|',
-    'pane:splitHorizontal': 'cmd+-',
+    'pane:next': 'ctrl+]',
+    'pane:prev': 'ctrl+[',
+    'pane:splitVertical': 'cmd+shift+|',
+    'pane:splitVertical': 'ctrl+shift+|',
+    'pane:splitHorizontal': 'cmd+shift+-',
+    'pane:splitHorizontal': 'ctrl+shift+-',
     'zoom:reset': 'cmd+shift+0',
     'zoom:in': 'cmd+shift+plus',
     'zoom:out': 'cmd+shift+-',
