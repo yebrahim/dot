@@ -1,5 +1,4 @@
 # .bashrc file
-# By Yasser Elsayed (yasser.ebrahim@gmail.com)
 #
 # Concepts:
 #
