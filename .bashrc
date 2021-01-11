@@ -10,50 +10,11 @@
 #        variables specified here.
 #           
 
-# Make prompt informative
-
-# Reset
-Color_Off="\[\033[0m"       # Text Reset
-PathShort="\w"
-NewLine="\n"
-# Regular Colors
-Black="\[\033[0;30m\]"        # Black
-Red="\[\033[0;31m\]"          # Red
-Green="\[\033[0;32m\]"        # Green
-Yellow="\[\033[0;33m\]"       # Yellow
-Blue="\[\033[0;34m\]"         # Blue
-Purple="\[\033[0;35m\]"       # Purple
-Cyan="\[\033[0;36m\]"         # Cyan
-White="\[\033[0;37m\]"        # White
+set +x
 
 git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
-
-export PS1=$Green"[\h]":$Color_Off'$(git branch &>/dev/null;\
-if [ $? -eq 0 ]; then \
-  echo "$(echo `git status` | grep "nothing to commit" > /dev/null 2>&1; \
-  if [ "$?" -eq "0" ]; then \
-    echo "'$Green'"\($(git_branch "(%s)")\);\
-  else \
-    echo "'$Red'"$(git_branch "{%s}");\
-  fi) '$Cyan'\w'$Color_Off''$NewLine'$ "; \
-else \
-  echo "$(echo `pwd` | grep "/google/src/cloud/$USER/" > /dev/null 2>&1; \
-  if [ "$?" -eq "0" ]; then \
-    echo "'$Green'Citc '$Cyan\${PWD#/google/src/cloud/$USER/}$Color_Off'\$ "; \
-  else \
-    echo "'$Cyan'\w'$Color_Off'\n$ "
-  fi)"; \
-fi)'
-
-# Git bash completion
-if [ ! -f ~/bin/git-completion.bash ]; then
-  curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/bin/git-completion.bash
-  curl https://raw.githubusercontent.com/bobthecow/git-flow-completion/master/git-flow-completion.bash -o ~/bin/git-flow-completion.bash
-fi
-source ~/bin/git-completion.bash
-source ~/bin/git-flow-completion.bash
 
 # Safety
 alias rm="rm -i"
@@ -80,7 +41,7 @@ alias pushupstream='git push --set-upstream origin $(git_branch)'
 alias pull='git pull'
 alias commit='git commit -m'
 alias amend='git commit --amend'
-alias fetch='git fetch'
+alias fetch='git fetch && git status'
 function colored-git-status {
   for i in `git diff --name-status`
   do
@@ -101,7 +62,7 @@ function st {
   git log --pretty=format:"%h - <%an> %s (%cr)" --date=relative -3 && echo
 }
 alias addall='git add -A'
-alias br='git branch'
+alias br='git branch -vv'
 alias co='git checkout'
 alias unstage='git reset HEAD'
 alias log='git log --pretty=format:"%h - <%an> %s (%cr)" --date=relative -10'
@@ -113,6 +74,13 @@ alias trackedbranch='git rev-parse --abbrev-ref --symbolic-full-name @{u}'
 odd () {
   git difftool -y -d $1..$2
 }
+
+function untilfail {
+  while "$@"; do :; done
+}
+
+# bazel
+alias bzltest='bazel test --test_output=all --nocache_test_results'
 
 # grep
 function mygrep { grep -rnIi "$1" . --color; }
@@ -129,3 +97,43 @@ export LSCOLORS=ExFxCxDxBxegedabagacad
 
 # prevent accidental session exit when ctrl+d pressed
 set -o ignoreeof
+
+# bash completion
+. ~/.git-completion.bash
+
+export EDITOR=vim
+export VISUAL="$EDITOR"
+
+export JAVA_HOME=/usr/local/lib/java/Contents/Home
+
+[ -s "/Users/yasser.elsayed/.jabba/jabba.sh" ] && source "/Users/yasser.elsayed/.jabba/jabba.sh"
+
+# Make prompt informative
+if test -f ~/.ps1.sh; then
+  source ~/.ps1.sh
+else
+  #Reset
+  Color_Off="\[\033[0m"       # Text Reset
+  PathShort="\w"
+  NewLine="\n"
+  # Regular Colors
+  Black="\[\e[0;30m\]"
+  Red="\[\e[0;31m\]"
+  Green="\[\e[0;32m\]"
+  Yellow="\[\e[0;33m\]"
+  Blue="\[\e[0;34m\]"
+  Purple="\[\e[0;35m\]"
+  Cyan="\[\e[0;36m\]"
+  White="\[\e[0;37m\]"
+  GrayBG="\[\033[44m\]"
+
+  export PS1=$GrayBG$Green"[\h]":$Color_Off'$(git branch &>/dev/null;\
+  if [ $? -eq 0 ]; then \
+    echo "$(echo `git status` | grep "nothing to commit" > /dev/null 2>&1; \
+    if [ "$?" -eq "0" ]; then \
+      echo "'$Green'"\($(git_branch "(%s)")\);\
+    else \
+      echo "'$Red'"$(git_branch "{%s}");\
+    fi) '$Cyan'\w'$Color_Off''$NewLine''$Red'▶ '$Color_Off'"; \
+  fi)'
+fi
