@@ -56,4 +56,4 @@ function nonzero_return() {
 	[ $RETVAL -ne 0 ] && echo "[¯\_(ツ)_/¯ $RETVAL] "
 }
 
-export PS1="\[\033[31m\]\`nonzero_return\`\[\033[m\]\[\033[2m\]\T\[\033[m\]\[\033[32m\]\`parse_git_branch\` \[\033[m\]\[\033[36;40m\]\w\[\033[m\]\n\[\033[33m\] ⮀⮀⮀⮀⮀ \[\033[m\]"
+export PS1="\[\033[31m\]\`nonzero_return\`\[\033[m\]\[\033[2m\]\T\[\033[m\]\[\033[32m\]\`parse_git_branch\` \[\033[m\]\[\033[36;40m\]\w\[\033[m\]\n\[\033[33m\] >>> \[\033[m\]"
