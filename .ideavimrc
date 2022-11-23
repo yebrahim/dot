@@ -1,0 +1,84 @@
+set guioptions-=m  "menu bar
+set guioptions-=T  "toolbar
+set guioptions-=r  "scrollbar
+
+set hlsearch
+set incsearch
+set ignorecase
+syntax on
+let python_highlight_all=1
+set cindent
+set number                                  " line numbers
+set cursorline                              " highlight cursor line
+set pastetoggle=<F2>
+" using alt/meta to jump words 
+set linebreak
+" facilitate ctag viewing
+map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+" read tags file from upper directories
+set tags=./tags;/
+set tabstop=2
+set softtabstop=2 expandtab
+set expandtab
+set smarttab
+set shiftwidth=2
+inoremap <nul> <c-n>
+set autoread
+filetype plugin on
+filetype indent on
+highlight ColorColumn ctermbg=235
+set colorcolumn=100
+
+" yank to clipboard
+if has('macunix')
+    set clipboard=unnamed
+elseif has('unix')
+    set clipboard=unnamedplus
+endif
+
+" search visually selected block
+vnoremap / <Esc>/\%V
+
+" select entire line without leading or trailing spaces
+nnoremap vil ^vg_
+
+" Remove current highlighting
+map zh :nohlsearch<CR>
+
+" Use system clipboard for copy/pasting
+vmap <C-x> :!pbcopy<CR>  
+vmap <C-c> :w !pbcopy<CR><CR> 
+
+" treat wrapped lines as multi-lines
+noremap k gk
+noremap j gj
+noremap 0 g0
+noremap $ g$
+
+" open grep prompt
+nnoremap grep :Grep <c-r>=expand("<cword>")<cr><CR>
+
+" turn off smart indentation for pasting
+map! jj <ESC>
+map! kk <ESC>
+" save shortcut
+nnoremap ss :w<CR>
+
+" persistent undo
+set undofile
+set undodir=~/.backup/vim/undo,~/tmp,/tmp
+
+set autoindent
+set smartindent
+
+" new line above
+nmap <C-Enter> <ESC>ko
+imap <C-Enter> <ESC>ko
+
+" swap files
+set noswapfile
+
+" search for selected text
+vnoremap // y/\V<C-r>=escape(@",'/\')<CR><CR>
+
