@@ -137,3 +137,11 @@ else
     fi) '$Cyan'\w'$Color_Off''$NewLine''$Red'▶ '$Color_Off'"; \
   fi)'
 fi
+
+# k8s
+alias k="kubectl $@"
+alias kdesc="kubectl describe pod $@"
+alias klogs="kubectl logs -f $@"
+alias kpod="kubectl get pods $@ --sort-by=.metadata.creationTimestamp"
+alias kdel="kubectl delete pod $@"
+alias kexec="kubectl exec -it $@ /bin/bash"
