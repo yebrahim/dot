@@ -8,7 +8,7 @@
 #    3) .bash_profile imports .bashrc, but not vice versa.
 #    4) .bashrc imports .bashrc_custom, which can be used to override
 #        variables specified here.
-#           
+#
 
 set +x
 
@@ -24,9 +24,11 @@ set -o noclobber
 
 # Nav
 alias ..='cd ..'
-alias ...='cd ..;cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
 alias md='mkdir'
 alias du='du -h --summarize'
+alias l='ls'
 alias ll='ls -Ahl'
 alias tree='tree -A -C -L 2'
 findfile () {
@@ -39,9 +41,13 @@ alias clone='git clone'
 alias push='git push'
 alias pushupstream='git push --set-upstream origin $(git_branch)'
 alias pull='git pull'
-alias commit='git commit -m'
+function commit {
+  git commit -m "$*"
+}
 alias amend='git commit --amend'
+alias amendall='git add --all && git commit --amend --no-edit'
 alias fetch='git fetch && git status'
+alias rebasemain='git fetch && git rebase origin/main'
 function colored-git-status {
   for i in `git diff --name-status`
   do
@@ -71,6 +77,7 @@ alias unstash='git stash pop'
 alias stashes='git stash list'
 alias pick='git cherry-pick'
 alias trackedbranch='git rev-parse --abbrev-ref --symbolic-full-name @{u}'
+alias grbc='git rebase --continue'
 odd () {
   git difftool -y -d $1..$2
 }
@@ -97,9 +104,6 @@ export LSCOLORS=ExFxCxDxBxegedabagacad
 
 # prevent accidental session exit when ctrl+d pressed
 set -o ignoreeof
-
-# bash completion
-. ~/.git-completion.bash
 
 export EDITOR=vim
 export VISUAL="$EDITOR"
@@ -138,10 +142,16 @@ else
   fi)'
 fi
 
-# k8s
 alias k="kubectl $@"
-alias kdesc="kubectl describe pod $@"
+alias kget="kubectl get $@"
+alias kdesc="kubectl describe $@"
 alias klogs="kubectl logs -f $@"
 alias kpod="kubectl get pods $@ --sort-by=.metadata.creationTimestamp"
 alias kdel="kubectl delete pod $@"
-alias kexec="kubectl exec -it $@ /bin/bash"
+function kexec() {
+  pod="$1"
+  container="$2"
+  if [ -z $container ]; then kubectl exec -it "$pod" -- /bin/bash
+  else kubectl exec -it $pod -c $container -- /bin/bash
+  fi
+}
