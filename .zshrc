@@ -3,35 +3,25 @@
 # Please make sure this block is at the start of this file.
 [ -s ~/.fig/shell/pre.sh ] && source ~/.fig/shell/pre.sh
 #### END FIG ENV VARIABLES ####
-export GOPATH=/Users/yasser.elsayed/go
-
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=$HOME/.bin:$PATH
 export PATH=$HOME/.gem/ruby/3.0.0/bin/:$PATH
 export PATH=$HOME/patched-php:$PATH
 export PATH=~/.npm-global/bin:$PATH
-export PATH=$GOPATH/bin:$PATH
+export PATH=~/go/bin:$PATH
 
-# android
-export ANDROID_HOME=/Users/yasser.elsayed/Library/Android/sdk
 export PATH=$ANDROID_HOME/platform-tools/:$PATH
 export PATH=$ANDROID_HOME/tools/bin/:$PATH
 export PATH=$ANDROID_HOME/build-tools/30.0.2/:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/yasser.elsayed/.oh-my-zsh"
+export ZSH="/Users/yasserelsayed/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="yasser"
-
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="true"
@@ -138,31 +128,41 @@ source $ZSH/oh-my-zsh.sh
 autoload -U compinit
 compinit
 
-eval "$(rbenv init -)"
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-source '/usr/local/opt/z/etc/profile.d/z.sh'
 
 #### FIG ENV VARIABLES ####
 [ -s ~/.fig/fig.sh ] && source ~/.fig/fig.sh
 #### END FIG ENV VARIABLES ####
-
-# autocomplete for css cli
-_css_completion () {
-  local reply
-  local si=$IFS
-
-  IFS=$'\n' reply=($(COMP_CWORD="$((CURRENT-1))" COMP_LINE="$BUFFER" _css_completion.py -- "${words[@]}"))
-  IFS=$si
-
-  _describe 'values' reply
-}
-compdef _css_completion css
 
 # No shared history
 unsetopt share_history
 
 export JAVA_HOME=/usr/local/lib/java/Contents/Home
 
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/yasserelsayed/gcpsdk/path.zsh.inc' ]; then . '/Users/yasserelsayed/gcpsdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/yasserelsayed/gcpsdk/completion.zsh.inc' ]; then . '/Users/yasserelsayed/gcpsdk/completion.zsh.inc'; fi
+
+. "$HOME/.cargo/env"
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+alias k="kubectl $@"
+alias kget="kubectl get $@"
+alias kdesc="kubectl describe $@"
+alias klogs="kubectl logs -f $@"
+alias kpod="kubectl get pods $@ --sort-by=.metadata.creationTimestamp"
+alias kdel="kubectl delete pod $@"
+function kexec() {
+  pod="$1"
+  container="$2"
+  if [ -z $container ]; then kubectl exec -it "$pod" -- /bin/bash
+  else kubectl exec -it $pod -c $container -- /bin/bash
+  fi
+}
+alias gcloud-kubectl="kubectl run -i --tty --rm gcloud-debug --image=google/cloud-sdk:latest --restart=Never -- sh"
